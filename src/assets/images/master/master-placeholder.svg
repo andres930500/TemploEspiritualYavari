@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900" role="img">
+  <title>Espacio provisional para fotografía del maestro</title>
+  <rect width="800" height="900" rx="28" fill="#f5efe5"/>
+  <circle cx="400" cy="320" r="120" fill="#c9a96e" opacity=".45"/>
+  <path d="M175 730c25-170 425-170 450 0" fill="#c9a96e" opacity=".45"/>
+  <path d="M250 160h300M250 740h300" stroke="#3a322c" stroke-width="4" stroke-dasharray="12 18"/>
+</svg>

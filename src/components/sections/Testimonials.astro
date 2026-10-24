@@ -1,0 +1,18 @@
+---
+import { testimonials } from '../../data/testimonials';
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+{testimonials.length > 0 && <section class="section bg-ink" id="testimonios" aria-labelledby="testimonials-title">
+	<div class="site-container">
+		<SectionHeading id="testimonials-title" title="Testimonios" />
+		<div class="card-grid sm:grid-cols-2">
+			{testimonials.filter((testimonial) => testimonial.published && testimonial.publicationAuthorized).map((testimonial) => (
+				<blockquote class="testimonial-card bg-charcoal p-6">
+					<p>{testimonial.testimonial}</p>
+					<cite>{testimonial.authorizedName}</cite>
+				</blockquote>
+			))}
+		</div>
+	</div>
+</section>}

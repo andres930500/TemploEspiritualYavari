@@ -1,0 +1,54 @@
+---
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+
+<section class="orientation-section" id="introduccion" aria-labelledby="introduction-title">
+	<div class="orientation-section__background" aria-hidden="true"></div>
+	<div class="orientation-section__haze" aria-hidden="true"></div>
+	<div class="orientation-section__content">
+		<header class="orientation-section__header">
+			<img src="/images/yavari/orientacion/isotipo_loto_luna.svg" alt="" width="74" height="74" />
+			<p class="orientation-section__brand">TEMPLO ESPIRITUAL<br /><strong>YAVARÍ</strong></p>
+			<span class="orientation-section__rule" aria-hidden="true"></span>
+			<h2 id="introduction-title">ORIENTACIÓN<br /><strong>ESPIRITUAL</strong><em>Personalizada</em></h2>
+			<p class="orientation-section__subtitle">Cada situación merece ser escuchada</p>
+		</header>
+
+		<div class="orientation-section__cards">
+			<article class="orientation-card orientation-card--love">
+				<div class="orientation-card__heading">
+					<img src="/images/yavari/orientacion/icono_corazon.svg" alt="" width="68" height="68" />
+					<h3>¿Estás sufriendo<br /><em>por amor?</em></h3>
+				</div>
+				<p>¿Tu pareja se ha alejado? ¿Atraviesas una separación, una infidelidad o deseas recuperar la armonía en tu relación?</p>
+			</article>
+			<article class="orientation-card orientation-card--calm">
+				<div class="orientation-card__heading">
+					<img src="/images/yavari/orientacion/icono_vela.svg" alt="" width="68" height="68" />
+					<h3>¿Sientes que algo extraño sucede<br /><em>en tu vida?</em></h3>
+				</div>
+				<p>¿Últimamente todo te sale mal, has perdido tu tranquilidad o sientes que las dificultades no terminan? ¿Te preocupa que puedas estar siendo víctima de algún trabajo de brujería?</p>
+			</article>
+		</div>
+
+		<p class="orientation-section__promise">No permitas que las dudas y la incertidumbre<br /><em>te quiten la tranquilidad.</em></p>
+		<div class="orientation-section__copy">
+			<p>En Templo Espiritual Yavarí escuchamos tu situación con <strong>seriedad, respeto y discreción.</strong> Conoce nuestros rituales tradicionales y servicios de orientación espiritual, sin juicios ni falsas promesas.</p>
+		</div>
+		<div class="orientation-section__invitation">
+			<span aria-hidden="true"></span>
+			<p>Cada situación es diferente.<br /><em>Cuéntanos la tuya.</em></p>
+			<span aria-hidden="true"></span>
+		</div>
+		<div class="orientation-section__cta">
+			<img class="orientation-section__leaf orientation-section__leaf--left" src="/images/yavari/orientacion/hojas_boton_izquierda.png" alt="" aria-hidden="true" />
+			<WhatsAppButton label="CUÉNTANOS TU SITUACIÓN POR WHATSAPP" section="introduction" location="orientation-cta" size="large" className="orientation-section__whatsapp" showIcon />
+			<img class="orientation-section__leaf orientation-section__leaf--right" src="/images/yavari/orientacion/hojas_boton_derecha.png" alt="" aria-hidden="true" />
+		</div>
+		<ul class="orientation-section__trust" aria-label="Compromisos de atención">
+			<li><img src="/images/yavari/orientacion/icono_escudo.svg" alt="" width="30" height="30" /><span>Discreción<br />total</span></li>
+			<li><img src="/images/yavari/orientacion/icono_loto.svg" alt="" width="30" height="30" /><span>Atención<br />personalizada</span></li>
+			<li><img src="/images/yavari/orientacion/icono_corazon.svg" alt="" width="30" height="30" /><span>Tu bienestar<br />es nuestra prioridad</span></li>
+		</ul>
+	</div>
+</section>

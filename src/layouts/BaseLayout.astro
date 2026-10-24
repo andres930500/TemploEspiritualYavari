@@ -1,0 +1,93 @@
+---
+import Footer from '../components/layout/Footer.astro';
+import FloatingWhatsApp from '../components/layout/FloatingWhatsApp.astro';
+import MobileContactBar from '../components/layout/MobileContactBar.astro';
+import ConsentBanner from '../components/layout/ConsentBanner.astro';
+import ConsentModeDefault from '../components/layout/ConsentModeDefault.astro';
+import { siteConfig } from '../config/site';
+import { createSeoData, organizationJsonLd } from '../lib/seo';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonicalPath?: string;
+	robots?: string;
+	shareImage?: string;
+}
+
+const {
+	title = siteConfig.commercialName,
+	description = siteConfig.description,
+	canonicalPath = Astro.url.pathname,
+	robots,
+	shareImage,
+} = Astro.props;
+const seo = createSeoData(canonicalPath, title, description, shareImage);
+const organization = organizationJsonLd();
+---
+
+<!doctype html>
+<html lang={siteConfig.locale}>
+	<head>
+		<ConsentModeDefault />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="description" content={seo.description} />
+		<meta name="robots" content={robots ?? seo.robots} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="canonical" href={seo.canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:locale" content={siteConfig.locale.replace('-', '_')} />
+		<meta property="og:title" content={seo.title} />
+		<meta property="og:description" content={seo.description} />
+		<meta property="og:url" content={seo.canonicalUrl} />
+		{seo.image && <meta property="og:image" content={seo.image} />}
+		<meta name="twitter:card" content={seo.image ? 'summary_large_image' : 'summary'} />
+		<meta name="twitter:title" content={seo.title} />
+		<meta name="twitter:description" content={seo.description} />
+		{seo.image && <meta name="twitter:image" content={seo.image} />}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<title>{seo.title}</title>
+		{organization && <script type="application/ld+json" set:html={JSON.stringify(organization)} />}
+	</head>
+	<body>
+		<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+		<main id="contenido" tabindex="-1">
+			<slot />
+		</main>
+		<Footer />
+		<FloatingWhatsApp />
+		<MobileContactBar />
+		<ConsentBanner />
+	</body>
+</html>
+
+<script>
+	import { emitInternalAnalyticsEvent } from '../lib/analytics';
+
+	document.addEventListener('click', (event) => {
+		const target = event.target;
+		if (!(target instanceof Element)) return;
+		const link = target.closest<HTMLAnchorElement>('[data-whatsapp-link]');
+		if (!link) return;
+
+		const service = link.dataset.service ?? 'general';
+		const placement = link.dataset.placement ?? 'unknown';
+		if (link.dataset.serviceInterest === 'true') {
+			emitInternalAnalyticsEvent({ event: 'service_interest', service, placement });
+		}
+		emitInternalAnalyticsEvent({ event: 'whatsapp_click', service, placement });
+	});
+
+	document.addEventListener('toggle', (event) => {
+		const details = event.target;
+		if (!(details instanceof HTMLDetailsElement) || !details.open) return;
+		emitInternalAnalyticsEvent({
+			event: 'faq_interaction',
+			placement: 'faq',
+			technical: { faqId: details.dataset.faqId ?? 'unknown' },
+		});
+	});
+</script>

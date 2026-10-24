@@ -1,0 +1,525 @@
+RESUMEN DEL PROYECTO
+====================
+
+Proyecto: Landing comercial de servicios esotéricos para Colombia
+Estado: Preparación técnica y comercial; contenido real todavía pendiente
+Fecha del resumen: 21 de octubre de 2026
+
+
+1. OBJETIVO DEL PROYECTO
+-------------------------
+
+Landing page one-page orientada a:
+
+- Mercado colombiano.
+- Visitantes procedentes de Google Ads y búsquedas orgánicas.
+- Captación de contactos mediante WhatsApp Business.
+- Presentación clara y profesional de servicios espirituales.
+- Desarrollo estático, rápido y preparado para Vercel.
+
+
+2. STACK TECNOLÓGICO
+--------------------
+
+- Astro 7.4.2.
+- TypeScript estricto.
+- Tailwind CSS 4.
+- Plugin oficial de Tailwind para Vite: @tailwindcss/vite.
+- JavaScript nativo.
+- Renderizado estático SSG.
+- npm.
+- Git.
+- Hosting previsto: Vercel.
+
+No se utilizan:
+
+- WordPress.
+- Next.js.
+- React.
+- Vue.
+- Angular.
+- jQuery.
+- Bootstrap.
+- Bibliotecas pesadas de animaciones.
+
+
+3. COMANDOS DISPONIBLES
+-----------------------
+
+npm run dev
+npm run build
+npm run preview
+npm run check
+npm run test
+
+
+4. ESTRUCTURA DE LA LANDING
+---------------------------
+
+La página principal contiene:
+
+1. Header.
+2. Hero.
+3. Introducción.
+4. Servicios.
+5. Presentación del maestro.
+6. Cómo funciona.
+7. Beneficios.
+8. Testimonios.
+9. Preguntas frecuentes.
+10. Contacto.
+11. Footer.
+
+Página principal:
+src/pages/index.astro
+
+Layout global:
+src/layouts/BaseLayout.astro
+
+
+5. HERO ACTUAL
+--------------
+
+H1:
+Lecturas de tarot y orientación espiritual en Colombia
+
+Descripción:
+Conoce nuestros servicios de tarot, limpiezas energéticas y consultas
+espirituales. Contacta directamente por WhatsApp para recibir información
+personalizada.
+
+Botón principal:
+Consultar por WhatsApp
+
+El hero utiliza actualmente una ilustración SVG provisional con temática
+esotérica. No representa a una persona real ni al maestro.
+
+Componente:
+src/components/sections/Hero.astro
+
+
+6. SERVICIOS CONFIGURADOS
+-------------------------
+
+Actualmente existen seis servicios provisionales:
+
+1. Lectura de tarot.
+2. Amarres de amor.
+3. Limpiezas energéticas.
+4. Consultas sentimentales.
+5. Orientación espiritual.
+6. Rituales espirituales.
+
+Cada servicio tiene:
+
+- Identificador.
+- Nombre.
+- Mensaje personalizado de WhatsApp.
+- Imagen provisional.
+- Texto alternativo.
+- Descripción corta.
+- Descripción larga.
+- Estado activo.
+- Orden de visualización.
+
+Archivo:
+src/data/services.ts
+
+Las descripciones comerciales todavía están pendientes de aprobación.
+
+
+7. CONFIGURACIÓN CENTRALIZADA
+-----------------------------
+
+Archivo principal:
+src/config/site.ts
+
+Actualmente centraliza:
+
+- Nombre comercial.
+- Título del hero.
+- Nombre del maestro.
+- Descripción del maestro.
+- Experiencia.
+- Descripción general.
+- Dominio.
+- Número de WhatsApp.
+- Mensaje general.
+- País.
+- Idioma.
+- Correo comercial.
+- Datos legales.
+- Horarios.
+- Redes sociales.
+- Imagen social.
+- Imagen del hero.
+- Imagen del maestro.
+- Entorno.
+- Permiso de indexación.
+
+Los datos que todavía no se conocen usan:
+
+PENDIENTE_DE_CONFIGURAR
+
+
+8. WHATSAPP BUSINESS
+--------------------
+
+La integración técnica está implementada y centralizada.
+
+Archivos principales:
+
+- src/lib/whatsapp.ts
+- src/components/ui/WhatsAppButton.astro
+- src/components/layout/FloatingWhatsApp.astro
+- src/components/layout/MobileContactBar.astro
+
+Características:
+
+- Validación del número internacional colombiano.
+- Generación de URLs https://wa.me/.
+- Codificación segura de mensajes.
+- Mensajes personalizados por servicio.
+- Botón principal del hero.
+- Botones en tarjetas de servicios.
+- Botón en la sección del maestro.
+- CTA final de contacto.
+- Botón flotante.
+- Barra persistente para móviles.
+- Enlaces externos con seguridad.
+- Compatibilidad con escritorio y móviles.
+- Botones deshabilitados cuando no existe un número válido.
+
+Número actual:
+PENDIENTE_DE_CONFIGURAR
+
+Por seguridad, actualmente no se utiliza ningún número ficticio.
+
+
+9. ANALÍTICA
+------------
+
+Existe infraestructura interna para eventos.
+
+Archivo:
+src/lib/analytics.ts
+
+Eventos preparados:
+
+- whatsapp_click
+- service_interest
+- faq_interaction
+
+Los eventos pueden identificar:
+
+- Servicio.
+- Ubicación del botón.
+- Sección.
+- Información técnica no sensible.
+
+Google Tag Manager, Google Analytics 4 y Google Ads están preparados para
+una fase posterior, pero actualmente no se cargan scripts externos ni se
+envían datos a servicios externos.
+
+Documentación:
+ANALYTICS-SETUP.md
+
+
+10. SEO
+-------
+
+El SEO está centralizado en:
+
+src/lib/seo.ts
+
+Incluye:
+
+- Title.
+- Meta description.
+- URL canónica.
+- Robots.
+- Open Graph.
+- Twitter/X Cards.
+- Imagen social.
+- JSON-LD condicional.
+- Idioma es-CO.
+- Sitemap.
+- Robots.txt.
+
+Archivos relacionados:
+
+- SEO-SETUP.md
+- src/pages/robots.txt.ts
+- astro.config.mjs
+
+Estado actual:
+
+- Desarrollo: noindex, nofollow.
+- Staging: no indexable.
+- Producción: requiere dominio real y autorización explícita.
+- No se permite example.com.
+- No existe todavía un dominio definitivo.
+
+
+11. PRIVACIDAD Y CONSENTIMIENTO
+------------------------------
+
+Se implementó un gestor ligero de consentimiento.
+
+Archivos:
+
+- src/lib/consent.ts
+- src/components/layout/ConsentBanner.astro
+- src/components/layout/ConsentModeDefault.astro
+- PRIVACY-SECURITY.md
+
+Categorías:
+
+1. Técnicas necesarias.
+2. Analítica.
+3. Publicidad y marketing.
+
+Comportamiento:
+
+- Analítica denegada inicialmente.
+- Publicidad denegada inicialmente.
+- analytics_storage denegado.
+- ad_storage denegado.
+- ad_user_data denegado.
+- ad_personalization denegado.
+- Aceptar cookies opcionales.
+- Rechazar cookies opcionales.
+- Configurar preferencias.
+- Modificar preferencias posteriormente.
+- Guardar preferencias localmente.
+- Reabrir la configuración desde el footer.
+
+
+12. PÁGINAS LEGALES
+-------------------
+
+Páginas creadas:
+
+- /politica-de-privacidad/
+- /terminos-y-condiciones/
+
+Archivos:
+
+- src/pages/politica-de-privacidad.astro
+- src/pages/terminos-y-condiciones.astro
+
+Incluyen estructuras para:
+
+- Responsable del tratamiento.
+- Datos personales.
+- Finalidades.
+- Cookies.
+- Derechos del titular.
+- Servicios de terceros.
+- Contratación.
+- Pagos.
+- Cancelaciones.
+- Reembolsos.
+- Limitaciones del servicio.
+- Medios de contacto.
+
+El contenido es provisional y necesita revisión jurídica colombiana.
+
+
+13. IMÁGENES
+-----------
+
+Las imágenes están organizadas en:
+
+src/assets/images/
+
+Recursos provisionales:
+
+- hero/hero-provisional.svg
+- services/tarot-provisional.svg
+- services/love-provisional.svg
+- services/energy-provisional.svg
+- services/heart-provisional.svg
+- services/spirit-provisional.svg
+- services/ritual-provisional.svg
+- master/master-placeholder.svg
+- social/og-provisional.png
+
+Características:
+
+- SVG originales y ligeros.
+- No se copiaron imágenes de competidores.
+- No se utilizan fotografías falsas del maestro.
+- El PNG Open Graph tiene 1200 x 630 píxeles.
+- El hero utiliza carga eager.
+- Las imágenes secundarias utilizan carga lazy.
+- Todas tienen dimensiones explícitas.
+- Se utiliza Astro Assets correctamente.
+- Se admite el atributo sizes para imágenes responsive futuras.
+
+Componente:
+src/components/ui/ResponsiveImage.astro
+
+Documentación:
+src/assets/images/README.md
+
+
+14. RENDIMIENTO
+---------------
+
+Reporte:
+PERFORMANCE-AUDIT.md
+
+Resultados verificables del build:
+
+- CSS generado: aproximadamente 21.7 KB sin comprimir.
+- 8 imágenes en la página principal.
+- 1 imagen eager.
+- 7 imágenes lazy.
+- 8 atributos sizes.
+- 0 scripts externos activos.
+- Sin React, Vue ni hidratación de frameworks.
+- Sin dependencias de runtime innecesarias.
+- Se mantiene prefers-reduced-motion.
+- Se mantienen estados de foco y navegación por teclado.
+
+No se ha ejecutado Lighthouse porque el entorno no dispone de Chrome ni del
+comando lighthouse.
+
+Por lo tanto, todavía no se pueden confirmar estas metas:
+
+- Lighthouse móvil de 90 o superior.
+- LCP menor de 2.5 segundos.
+- INP menor de 200 milisegundos.
+- CLS menor de 0.1.
+
+
+15. SEGURIDAD
+------------
+
+Se configuraron headers mediante:
+
+vercel.json
+
+Incluye:
+
+- Referrer-Policy.
+- X-Content-Type-Options.
+- X-Frame-Options.
+- Permissions-Policy.
+
+No se añadió una CSP estricta porque todavía no están definidos los orígenes
+reales de las futuras etiquetas de Google.
+
+
+16. PRUEBAS Y VALIDACIÓN
+------------------------
+
+Última validación ejecutada:
+
+npm run check
+npm run test
+npm run build
+
+Resultados:
+
+- Astro check: 0 errores.
+- Astro check: 0 advertencias.
+- Astro check: 0 hints.
+- Tests: 6 exitosos.
+- Tests fallidos: 0.
+- Build: exitoso.
+- Páginas estáticas generadas: 4.
+- Sitemap generado correctamente.
+- Imágenes procesadas correctamente por Astro.
+
+Pruebas:
+
+- tests/whatsapp.test.ts
+- tests/consent.test.ts
+
+
+17. DOCUMENTACIÓN DISPONIBLE
+----------------------------
+
+- README.md
+- SEO-SETUP.md
+- ANALYTICS-SETUP.md
+- PRIVACY-SECURITY.md
+- PERFORMANCE-AUDIT.md
+- src/assets/images/README.md
+
+
+18. DATOS PENDIENTES
+--------------------
+
+Antes de publicar comercialmente se debe confirmar:
+
+- Nombre comercial.
+- Nombre público del maestro.
+- Número real de WhatsApp Business.
+- Dominio definitivo.
+- Ciudad o cobertura.
+- Modalidad de atención.
+- Servicios definitivos.
+- Descripciones finales.
+- Experiencia verificable.
+- Precios o forma de informar tarifas.
+- Condiciones de contratación.
+- Cancelaciones y reembolsos.
+- Datos legales del prestador.
+- Correo comercial.
+- Horarios de atención.
+- Redes sociales oficiales.
+- Fotografías definitivas.
+- Testimonios reales autorizados.
+- Revisión jurídica de las páginas legales.
+- Configuración real de GTM, GA4 y Google Ads.
+- Medición Lighthouse en dispositivos móviles.
+
+
+19. ESTADO ACTUAL
+-----------------
+
+LISTO TÉCNICAMENTE:
+
+- Arquitectura Astro.
+- TypeScript estricto.
+- Tailwind CSS 4.
+- Diseño responsive base.
+- Componentes modulares.
+- Catálogo de servicios.
+- WhatsApp centralizado.
+- Analítica interna.
+- SEO técnico.
+- Sitemap.
+- Robots.txt.
+- Consentimiento.
+- Consent Mode.
+- Páginas legales estructuradas.
+- Headers de seguridad.
+- Imágenes provisionales.
+- Optimización inicial de rendimiento.
+- Pruebas automatizadas.
+- Build estático.
+
+PENDIENTE:
+
+- Datos reales del negocio.
+- Número real de WhatsApp.
+- Contenido comercial definitivo.
+- Datos legales definitivos.
+- Precios y condiciones.
+- Fotografías finales.
+- Testimonios autorizados.
+- Dominio definitivo.
+- Cuentas de Google.
+- Lighthouse real.
+- Aprobación final de lanzamiento.
+
+Conclusión:
+
+La base técnica está implementada, validada y preparada para continuar.
+La landing todavía se encuentra en fase de contenido provisional y no debe
+publicarse como operación comercial definitiva hasta completar los datos del
+negocio, la información legal, el número real de WhatsApp y la revisión final.

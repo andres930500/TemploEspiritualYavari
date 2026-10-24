@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import Introduction from '../components/sections/Introduction.astro';
+import Services from '../components/sections/Services.astro';
+import AboutMaster from '../components/sections/AboutMaster.astro';
+import HowItWorks from '../components/sections/HowItWorks.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Contact from '../components/sections/Contact.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title={`${siteConfig.heroTitle} | ${siteConfig.commercialName}`}>
+	<Hero />
+	<Introduction />
+	<Services />
+	<AboutMaster />
+	<HowItWorks />
+	<Benefits />
+	<Testimonials />
+	<FAQ />
+	<Contact />
+</BaseLayout>

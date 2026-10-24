@@ -1,0 +1,22 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+---
+
+<section class="section bg-ink" id="como-funciona" aria-labelledby="how-it-works-title">
+	<div class="site-container">
+		<SectionHeading id="how-it-works-title" eyebrow="Proceso informativo" title="Cómo funciona" description="Un recorrido sencillo para conocer el servicio antes de tomar una decisión." />
+		<ol class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+			{[
+				'Selecciona un servicio.',
+				'Solicita información por WhatsApp.',
+				'Revisa la información de la consulta.',
+				'Decide si deseas contratar el servicio.',
+			].map((step, index) => (
+				<li class="rounded-card border border-gold/20 bg-charcoal p-6 shadow-card">
+					<span class="mb-5 grid size-10 place-items-center rounded-full border border-gold text-gold" aria-hidden="true">{index + 1}</span>
+					<p class="m-0 leading-relaxed text-text">{step}</p>
+				</li>
+			))}
+		</ol>
+	</div>
+</section>

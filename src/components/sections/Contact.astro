@@ -1,0 +1,16 @@
+---
+import { PENDING, siteConfig } from '../../config/site';
+import SectionHeading from '../ui/SectionHeading.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+
+<section class="section bg-charcoal" id="contacto" aria-labelledby="contact-title">
+	<div class="site-container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+		<div>
+			<SectionHeading id="contact-title" eyebrow="Siguiente paso" title="Solicita información" description={siteConfig.contactMessage} />
+			{siteConfig.commercialEmail !== PENDING && <p class="m-0 text-sm text-muted">Correo: <a class="text-gold-light underline underline-offset-4" href={`mailto:${siteConfig.commercialEmail}`}>{siteConfig.commercialEmail}</a></p>}
+			{siteConfig.whatsappBusinessNumber !== PENDING && <p class="mt-2 text-sm text-muted">WhatsApp: {siteConfig.whatsappBusinessNumber}</p>}
+		</div>
+		<WhatsAppButton label="Contactar por WhatsApp" section="contact" location="contact-cta" />
+	</div>
+</section>

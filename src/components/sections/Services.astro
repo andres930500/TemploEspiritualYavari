@@ -1,0 +1,26 @@
+---
+import { services } from '../../data/services';
+import SectionHeading from '../ui/SectionHeading.astro';
+import ServiceCard from '../ui/ServiceCard.astro';
+
+const categories = [
+	{ id: 'amor-relaciones', title: 'Amor y relaciones', description: 'Conoce nuestros rituales tradicionales relacionados con el amor, las relaciones y los vínculos sentimentales.' },
+	{ id: 'lecturas-espirituales', title: 'Lecturas espirituales', description: 'Conoce nuestras consultas de interpretación simbólica y orientación espiritual.' },
+	{ id: 'limpiezas-rituales', title: 'Limpiezas y rituales', description: 'Explora nuestras prácticas ceremoniales relacionadas con la renovación, la prosperidad y las tradiciones espirituales.' },
+] as const;
+---
+
+<section class="section bg-ink" id="servicios" aria-labelledby="services-title">
+	<div class="site-container">
+		<SectionHeading id="services-title" eyebrow="Catálogo provisional" title="Servicios disponibles" description="Selecciona una categoría para solicitar información. Las descripciones se actualizarán con contenido aprobado." />
+		{categories.map((category) => (
+			<section class="services-category" aria-labelledby={`${category.id}-title`}>
+				<h3 id={`${category.id}-title`}>{category.title}</h3>
+				<p>{category.description}</p>
+				<div class="card-grid card-grid--services">
+					{services.filter((service) => service.active && service.category === category.id).sort((a, b) => a.order - b.order).map((service) => <ServiceCard service={service} />)}
+				</div>
+			</section>
+		))}
+	</div>
+</section>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img">
+  <title>Ilustración provisional de corazón y conversación</title>
+  <rect width="800" height="520" rx="28" fill="#27221e"/>
+  <path d="M400 380 220 230c-75-75 30-180 105-90l75 82 75-82c75-90 180 15 105 90z" fill="none" stroke="#e5cb98" stroke-width="14"/>
+  <path d="M250 155 175 90M550 155l75-65" stroke="#c9a96e" stroke-width="7"/>
+</svg>

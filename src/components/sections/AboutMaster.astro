@@ -1,0 +1,20 @@
+---
+import { PENDING, siteConfig } from '../../config/site';
+import SectionHeading from '../ui/SectionHeading.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+import ResponsiveImage from '../ui/ResponsiveImage.astro';
+---
+
+<section class="section section--light" id="maestro" aria-labelledby="master-title">
+	<div class="site-container grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+		<div class="overflow-hidden rounded-card border border-dashed border-gold/50 bg-paper">
+			<ResponsiveImage src={siteConfig.masterImage} alt="Ilustración abstracta provisional para presentar al maestro" width={800} height={900} sizes="(min-width: 1024px) 35vw, 100vw" class="block aspect-square w-full object-cover lg:aspect-auto" />
+		</div>
+		<div>
+			<SectionHeading id="master-title" eyebrow="Presentación" title="Sobre el maestro" description={siteConfig.masterDescription} />
+			{siteConfig.masterName !== PENDING && <p class="mb-6 text-lg font-semibold text-text-dark">{siteConfig.masterName}</p>}
+			{siteConfig.masterExperience !== PENDING && <p class="mb-6 text-text-dark">{siteConfig.masterExperience}</p>}
+			<WhatsAppButton label="Consultar sobre el servicio" section="about-master" location="master-cta" />
+		</div>
+	</div>
+</section>

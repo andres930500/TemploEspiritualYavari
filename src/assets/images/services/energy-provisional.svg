@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img">
+  <title>Ilustración provisional de vela y energía</title>
+  <rect width="800" height="520" rx="28" fill="#27221e"/>
+  <path d="M400 90c-32 42 25 65 0 100-30-20-53 18-32 47-42-32-70-80-32-125 18-22 47-35 64-22z" fill="#e5cb98"/>
+  <path d="M300 210h200v180c0 25-20 45-45 45h-110c-25 0-45-20-45-45z" fill="#c9a96e"/>
+  <path d="M340 280h120M340 330h120" stroke="#3a322c" stroke-width="12"/>
+</svg>

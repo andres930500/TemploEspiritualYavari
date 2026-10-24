@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Términos y condiciones" description="Condiciones provisionales de uso de los servicios.">
+	<section class="legal-page section section--light" aria-labelledby="terms-title">
+		<div class="site-container legal-page__content">
+			<p class="section-heading__eyebrow">Documento pendiente de revisión jurídica</p>
+			<h1 id="terms-title">Términos y condiciones</h1>
+			<p>Esta versión es una estructura provisional y no constituye condiciones definitivas de contratación.</p>
+			<h2>1. Identificación del prestador</h2>
+			<p>Prestador: {siteConfig.commercialLegal.businessName}. Los datos legales están pendientes de configuración y aprobación.</p>
+			<h2>2. Descripción de los servicios</h2>
+			<p>El catálogo describe categorías provisionales de orientación y servicios esotéricos. La descripción, alcance, límites y condiciones de cada servicio deberán ser aprobados antes de publicarse.</p>
+			<h2>3. Proceso de contratación</h2>
+			<p>El visitante podrá solicitar información mediante el canal configurado. El proceso contractual, aceptación, confirmación y soporte deben ser definidos por el prestador.</p>
+			<h2>4. Precios, pagos y comprobantes</h2>
+			<p>No se han configurado precios, medios de pago, impuestos ni condiciones de facturación. No deben publicarse como definitivos hasta contar con información real y revisión jurídica.</p>
+			<h2>5. Cancelaciones y reembolsos</h2>
+			<p>Las condiciones de cancelación, cambios, reembolsos y excepciones están pendientes de definición. No se presume ningún derecho o limitación no informado legalmente.</p>
+			<h2>6. Limitaciones del servicio</h2>
+			<p>Los servicios no deben presentarse como garantía de resultados ni sustituir atención profesional médica, psicológica, jurídica o financiera cuando corresponda.</p>
+			<h2>7. Contacto</h2>
+			<p>El canal comercial será confirmado antes de la publicación. Correo configurado: {siteConfig.commercialEmail}.</p>
+			<h2>8. Aprobación requerida</h2>
+			<p>Identidad del prestador, servicios, contratación, precios, pagos, cancelaciones, reembolsos, limitaciones y contacto requieren completar información real y revisión jurídica.</p>
+		</div>
+	</section>
+</BaseLayout>

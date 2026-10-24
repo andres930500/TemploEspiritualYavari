@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img">
+  <title>Composición abstracta con luna y estrellas</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#171411"/>
+      <stop offset="1" stop-color="#3a322c"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop stop-color="#e5cb98" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#e5cb98" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="850" cy="360" r="310" fill="url(#glow)"/>
+  <circle cx="850" cy="360" r="142" fill="#e5cb98"/>
+  <circle cx="915" cy="315" r="142" fill="#27221e"/>
+  <g fill="#c9a96e">
+    <circle cx="170" cy="170" r="5"/><circle cx="290" cy="550" r="4"/><circle cx="1040" cy="150" r="5"/>
+    <circle cx="1030" cy="625" r="4"/><circle cx="650" cy="130" r="3"/>
+  </g>
+  <path d="M170 650 250 510l80 140-80-42z" fill="none" stroke="#c9a96e" stroke-width="3"/>
+</svg>

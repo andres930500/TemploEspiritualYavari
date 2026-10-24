@@ -1,0 +1,22 @@
+---
+import type { Service } from '../../data/services';
+import WhatsAppButton from './WhatsAppButton.astro';
+import ResponsiveImage from './ResponsiveImage.astro';
+
+interface Props {
+	service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<article class="service-card flex h-full flex-col" id={service.id}>
+	<ResponsiveImage src={service.image} alt={service.imageAlt} width={800} height={520} sizes="(min-width: 1024px) 30vw, 100vw" class="mb-5 aspect-video w-full rounded-lg object-cover" />
+	<p class="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-gold">{service.id}</p>
+	<h3 class="service-card__title">{service.name}</h3>
+	<p class="service-card__text">{service.shortDescription}</p>
+	{service.longDescription && <p class="service-card__text">{service.longDescription}</p>}
+	<div class="mt-auto pt-6">
+		<WhatsAppButton serviceId={service.id} label={`Solicitar información sobre ${service.name}`} section="services" location="service-card" />
+	</div>
+</article>

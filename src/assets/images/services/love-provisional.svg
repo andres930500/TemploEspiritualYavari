@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img">
+  <title>Ilustración provisional de símbolo de conexión</title>
+  <rect width="800" height="520" rx="28" fill="#27221e"/>
+  <path d="M400 385 190 210c-80-95 55-190 130-90l80 88 80-88c75-100 210-5 130 90z" fill="none" stroke="#c9a96e" stroke-width="18"/>
+  <circle cx="400" cy="260" r="150" fill="none" stroke="#e5cb98" stroke-width="3" stroke-dasharray="8 16"/>
+</svg>

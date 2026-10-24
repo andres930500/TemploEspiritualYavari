@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PENDING, siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Política de privacidad" description="Información provisional sobre privacidad y tratamiento de datos personales.">
+	<section class="legal-page section section--light" aria-labelledby="privacy-title">
+		<div class="site-container legal-page__content">
+			<p class="section-heading__eyebrow">Documento pendiente de revisión jurídica</p>
+			<h1 id="privacy-title">Política de privacidad</h1>
+			<p>Esta versión es una estructura informativa provisional. Debe ser revisada y aprobada antes de publicar el sitio comercialmente, conforme a la Ley 1581 de 2012 y las disposiciones colombianas aplicables.</p>
+			<h2>1. Responsable del tratamiento</h2>
+			<p>Responsable: {siteConfig.commercialLegal.businessName}.</p>
+			<p>Representante o titular: {siteConfig.commercialLegal.legalRepresentative}. Identificación: {siteConfig.commercialLegal.identification}.</p>
+			<p>Contacto: {siteConfig.commercialEmail}. Estos campos requieren datos reales y revisión jurídica.</p>
+			<h2>2. Finalidades del tratamiento</h2>
+			<p>La finalidad, base legal y alcance del tratamiento deberán definirse y aprobarse antes de la publicación. No se deberán usar los datos para finalidades distintas a las informadas.</p>
+			<h2>3. Datos personales</h2>
+			<p>El documento definitivo debe identificar las categorías de datos recopilados, su carácter necesario u opcional y los canales por los que se obtienen. No se solicita ni almacena el contenido de conversaciones de WhatsApp desde este sitio.</p>
+			<h2>4. Terceros, analítica y cookies</h2>
+			<p>GTM, GA4 y Google Ads permanecen desactivados hasta obtener consentimiento. Si se activan, deberán documentarse los proveedores, transferencias, finalidades, cookies y configuraciones de Consent Mode.</p>
+			<h2>5. Derechos de los titulares</h2>
+			<p>El texto definitivo debe explicar los derechos de conocer, actualizar, rectificar, solicitar prueba de autorización, ser informado, presentar quejas y solicitar la supresión cuando proceda.</p>
+			<h2>6. Procedimiento para ejercer derechos</h2>
+			<p>Canal de atención: {siteConfig.commercialEmail}. Este medio está pendiente de confirmación y debe incluir responsables, requisitos, plazos y procedimiento aprobados.</p>
+			<h2>7. Conservación y seguridad</h2>
+			<p>Los plazos de conservación, medidas de seguridad y procedimiento de eliminación deben ser definidos por el responsable y revisados jurídicamente.</p>
+			<h2>8. Aprobación requerida</h2>
+			<p>{PENDING} Identidad legal, contacto, finalidades, categorías de datos, proveedores, cookies, conservación y procedimiento de derechos requieren completar información real antes de operar.</p>
+		</div>
+	</section>
+</BaseLayout>

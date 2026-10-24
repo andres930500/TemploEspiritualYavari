@@ -1,0 +1,49 @@
+---
+	import WhatsAppButton from '../ui/WhatsAppButton.astro';
+
+	const featuredServices = [
+		{ href: '#lectura-de-tarot', icon: '/images/yavari/icono-tarot.svg', label: 'Lectura de tarot' },
+		{ href: '#amarres-de-amor', icon: '/images/yavari/icono-amor.svg', label: 'Orientación amorosa' },
+		{ href: '#limpiezas-energeticas', icon: '/images/yavari/icono-limpieza.svg', label: 'Limpieza energética' },
+	];
+
+	const heroDescription = 'Conversa con nosotros y conoce las opciones de consulta disponibles.';
+	const heroBannerTitle = 'TEMPLO ESPIRITUAL YAVARI';
+	const heroBannerTrust = 'SERIEDAD · TRANSPARENCIA · RESPETO';
+	---
+
+	<section class="hero-yavari" id="inicio" aria-labelledby="hero-title">
+		<picture class="hero-yavari__background">
+			<source media="(max-width: 767px)" srcset="/images/yavari/fondo-hero-movil.jpeg" />
+			<img src="/images/yavari/fondo-cosmico-escritorio.webp" alt="" width="1365" height="768" fetchpriority="high" decoding="async" />
+		</picture>
+		<div class="hero-yavari__overlay" aria-hidden="true"></div>
+		<div class="hero-yavari__content">
+			<header class="hero-yavari__brand" aria-label="Consulta espiritual">
+				<div class="hero-yavari__brand-line" aria-hidden="true"></div>
+				<img src="/images/yavari/logo-loto-luna.svg" alt="" width="72" height="44" />
+				<div class="hero-yavari__brand-line" aria-hidden="true"></div>
+				<p class="hero-yavari__brand-name">{heroBannerTitle}</p>
+				<p class="hero-yavari__trust">{heroBannerTrust}</p>
+			</header>
+			<div class="hero-yavari__scene">
+				<img src="/images/yavari/escena-lectura-referencia.webp" alt="Escena de lectura de tarot con cartas y elementos espirituales" width="964" height="545" fetchpriority="high" decoding="async" />
+			</div>
+			<div class="hero-yavari__copy">
+				<h1 id="hero-title"><span>Encuentra</span> <strong>claridad</strong><br /><span>para tu camino</span></h1>
+				<img class="hero-yavari__divider" src="/images/yavari/divisor-luna.svg" alt="" width="160" height="24" />
+				<p class="hero-yavari__subtitle">Tarot, orientación espiritual,<br />amarres de amor<br />y limpiezas energéticas</p>
+				<p class="hero-yavari__description">{heroDescription}</p>
+				<WhatsAppButton label="HABLAR POR WHATSAPP" section="hero" location="hero-cta" className="hero-yavari__whatsapp" showIcon />
+				<p class="hero-yavari__confidence"><span class="hero-yavari__confidence-line" aria-hidden="true"></span><img src="/images/yavari/icono-confianza.svg" alt="" width="16" height="16" /> Atención personalizada · Consulta sin compromiso<span class="hero-yavari__confidence-line" aria-hidden="true"></span></p>
+			</div>
+			<nav class="hero-yavari__services" aria-label="Servicios destacados">
+				{featuredServices.map((service) => (
+					<a href={service.href}>
+						<img src={service.icon} alt="" width="28" height="28" />
+						<span>{service.label}</span>
+					</a>
+				))}
+			</nav>
+		</div>
+	</section>

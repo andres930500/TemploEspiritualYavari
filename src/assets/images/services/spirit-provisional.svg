@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520" role="img">
+  <title>Ilustración provisional de orientación espiritual</title>
+  <rect width="800" height="520" rx="28" fill="#27221e"/>
+  <circle cx="400" cy="250" r="130" fill="none" stroke="#c9a96e" stroke-width="5"/>
+  <path d="M400 95v310M245 250h310M290 140l220 220M510 140 290 360" stroke="#e5cb98" stroke-width="4"/>
+  <circle cx="400" cy="250" r="24" fill="#e5cb98"/>
+</svg>

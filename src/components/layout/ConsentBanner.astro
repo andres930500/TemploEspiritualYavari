@@ -1,0 +1,78 @@
+---
+---
+
+<aside class="consent-banner" data-consent-banner hidden aria-labelledby="consent-title" aria-describedby="consent-description">
+	<div class="consent-banner__content">
+		<h2 id="consent-title">Privacidad y cookies</h2>
+		<p id="consent-description">Usamos solo las tecnologías necesarias para que el sitio funcione. Las opciones de analítica y publicidad están desactivadas hasta que las autorices.</p>
+		<div class="consent-banner__actions">
+			<button class="button button--secondary button--small" type="button" data-consent-reject>Rechazar opcionales</button>
+			<button class="button button--secondary button--small" type="button" data-consent-settings>Configurar preferencias</button>
+			<button class="button button--primary button--small" type="button" data-consent-accept>Aceptar opcionales</button>
+		</div>
+	</div>
+	<form class="consent-preferences" data-consent-form hidden>
+		<fieldset>
+			<legend>Preferencias de privacidad</legend>
+			<label><input type="checkbox" checked disabled /> Técnicas necesarias <span>Siempre activas</span></label>
+			<label><input type="checkbox" name="analytics" /> Analítica</label>
+			<label><input type="checkbox" name="advertising" /> Publicidad y marketing</label>
+		</fieldset>
+		<div class="consent-banner__actions">
+			<button class="button button--secondary button--small" type="button" data-consent-cancel>Cancelar</button>
+			<button class="button button--primary button--small" type="submit">Guardar preferencias</button>
+		</div>
+	</form>
+</aside>
+
+<script>
+	import {
+		CONSENT_STORAGE_KEY,
+		consentToGoogleState,
+		deniedConsent,
+		readConsentPreferences,
+		saveConsentPreferences,
+	} from '../../lib/consent';
+
+	const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+	const form = document.querySelector<HTMLFormElement>('[data-consent-form]');
+	const analyticsInput = form?.elements.namedItem('analytics') as HTMLInputElement | null;
+	const advertisingInput = form?.elements.namedItem('advertising') as HTMLInputElement | null;
+
+	const updateGoogleConsent = (preferences: typeof deniedConsent) => {
+		window.dataLayer = window.dataLayer || [];
+		const state = consentToGoogleState(preferences);
+		window.gtag?.('consent', 'update', state);
+		window.dataLayer.push({ event: 'consent_update', consent: state });
+		window.dispatchEvent(new CustomEvent('consent_changed', { detail: preferences }));
+	};
+
+	const save = (preferences: typeof deniedConsent) => {
+		saveConsentPreferences(localStorage, preferences);
+		updateGoogleConsent(preferences);
+		if (banner) banner.hidden = true;
+	};
+
+	const showPreferences = () => {
+		if (!form || !analyticsInput || !advertisingInput) return;
+		const current = readConsentPreferences(localStorage) ?? deniedConsent;
+		analyticsInput.checked = current.analytics;
+		advertisingInput.checked = current.advertising;
+		form.hidden = false;
+	};
+
+	if (banner && !readConsentPreferences(localStorage)) banner.hidden = false;
+	document.querySelector('[data-consent-accept]')?.addEventListener('click', () => save({ analytics: true, advertising: true }));
+	document.querySelector('[data-consent-reject]')?.addEventListener('click', () => save(deniedConsent));
+	document.querySelector('[data-consent-settings]')?.addEventListener('click', showPreferences);
+	document.querySelector('[data-consent-cancel]')?.addEventListener('click', () => {
+		if (form) form.hidden = true;
+	});
+	form?.addEventListener('submit', (event) => {
+		event.preventDefault();
+		save({ analytics: analyticsInput?.checked ?? false, advertising: advertisingInput?.checked ?? false });
+	});
+
+	window.addEventListener('privacy_preferences_open', showPreferences);
+	void CONSENT_STORAGE_KEY;
+</script>

@@ -1,0 +1,25 @@
+---
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+
+<div class="mobile-contact-bar" aria-label="Contacto rápido móvil" data-mobile-contact-bar hidden aria-hidden="true">
+	<WhatsAppButton label="Escríbenos por WhatsApp" location="mobile-bar" section="global" size="medium" showIcon />
+</div>
+
+<script>
+	const contactBar = document.querySelector<HTMLElement>('[data-mobile-contact-bar]');
+	const hero = document.querySelector<HTMLElement>('#inicio');
+
+	if (contactBar && hero && 'IntersectionObserver' in window) {
+		const observer = new IntersectionObserver(([entry]) => {
+			const heroVisible = entry?.isIntersecting ?? true;
+			contactBar.hidden = heroVisible;
+			contactBar.setAttribute('aria-hidden', String(heroVisible));
+		}, { threshold: 0.05 });
+
+		observer.observe(hero);
+	} else if (contactBar) {
+		contactBar.hidden = false;
+		contactBar.removeAttribute('aria-hidden');
+	}
+</script>
