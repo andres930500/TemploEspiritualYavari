@@ -1005,24 +1005,11 @@ a {
 .whatsapp-button {
 	position: relative;
 	isolation: isolate;
+	animation: whatsapp-border-pulse 2.8s ease-in-out infinite;
 }
 
 .whatsapp-button::after {
-	position: absolute;
-	z-index: 2;
-	top: 0;
-	left: 0;
-	width: 0.45rem;
-	height: 0.45rem;
-	border-radius: 50%;
-	background: radial-gradient(circle, #fff8d8 0%, #f3d98f 38%, rgb(229 203 152 / 0.45) 64%, transparent 74%);
-	box-shadow: 0 0 0.9rem rgb(243 217 143 / 1);
-	content: "";
-	pointer-events: none;
-	offset-path: inset(-0.25rem round 999px);
-	offset-distance: 0%;
-	offset-rotate: 0deg;
-	animation: whatsapp-orbit 7s linear infinite;
+	content: none;
 }
 
 .whatsapp-button:hover,
@@ -1031,16 +1018,20 @@ a {
 	transform: translateY(-1px) scale(1.04);
 }
 
-@keyframes whatsapp-orbit {
-	to {
-		offset-distance: 100%;
+@keyframes whatsapp-border-pulse {
+	0%,
+	100% {
+		box-shadow: 0 0 0 0 rgb(229 203 152 / 0.18);
+	}
+
+	50% {
+		box-shadow: 0 0 0 3px rgb(229 203 152 / 0.55), 0 0 0.9rem rgb(229 203 152 / 0.52);
 	}
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.whatsapp-button::after {
+	.whatsapp-button {
 		animation: none;
-		offset-distance: 0%;
 	}
 
 	.whatsapp-button:focus-visible {
