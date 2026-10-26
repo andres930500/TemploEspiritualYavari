@@ -1,0 +1,55 @@
+---
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+
+interface Servicio {
+	num: string;
+	id: string;
+	nombre: string;
+	subtitulo: string;
+	pregunta: string;
+	descripcion: string;
+	cta: string;
+	icono: string;
+	imagen: string;
+	iconoRuta: string;
+	whatsappTexto: string;
+}
+
+interface Props {
+	service: Servicio;
+	index: number;
+}
+
+const { service, index } = Astro.props;
+---
+
+<article class="yavari-service-card" id={service.id}>
+	<div class="yavari-service-card__media">
+		<img
+			src={service.imagen}
+			alt={`Imagen representativa de ${service.nombre.toLowerCase()}`}
+			width="680"
+			height="420"
+			loading={index === 0 ? 'eager' : 'lazy'}
+			decoding="async"
+		/>
+		<div class="yavari-service-card__media-shade" aria-hidden="true"></div>
+		<span class="yavari-service-card__number">{service.num}</span>
+		<img class="yavari-service-card__icon" src={service.iconoRuta} alt="" width="42" height="42" aria-hidden="true" />
+	</div>
+	<div class="yavari-service-card__body">
+		<p class="yavari-service-card__subtitle">{service.subtitulo}</p>
+		<h3>{service.nombre}</h3>
+		<p class="yavari-service-card__question">{service.pregunta}</p>
+		<p class="yavari-service-card__description">{service.descripcion}</p>
+		<WhatsAppButton
+			label={service.cta}
+			message={service.whatsappTexto}
+			section="services"
+			location={`service-card-${service.id}`}
+			size="medium"
+			className="yavari-service-card__cta"
+			showIcon
+		/>
+	</div>
+</article>

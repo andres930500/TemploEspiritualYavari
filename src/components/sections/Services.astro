@@ -1,26 +1,30 @@
 ---
-import { services } from '../../data/services';
-import SectionHeading from '../ui/SectionHeading.astro';
-import ServiceCard from '../ui/ServiceCard.astro';
-
-const categories = [
-	{ id: 'amor-relaciones', title: 'Amor y relaciones', description: 'Conoce nuestros rituales tradicionales relacionados con el amor, las relaciones y los vínculos sentimentales.' },
-	{ id: 'lecturas-espirituales', title: 'Lecturas espirituales', description: 'Conoce nuestras consultas de interpretación simbólica y orientación espiritual.' },
-	{ id: 'limpiezas-rituales', title: 'Limpiezas y rituales', description: 'Explora nuestras prácticas ceremoniales relacionadas con la renovación, la prosperidad y las tradiciones espirituales.' },
-] as const;
+import ServicioCard from '../servicios/ServicioCard.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+import servicesContent from '../../data/servicios-contenido.json';
 ---
 
-<section class="section bg-ink" id="servicios" aria-labelledby="services-title">
-	<div class="site-container">
-		<SectionHeading id="services-title" eyebrow="Catálogo provisional" title="Servicios disponibles" description="Selecciona una categoría para solicitar información. Las descripciones se actualizarán con contenido aprobado." />
-		{categories.map((category) => (
-			<section class="services-category" aria-labelledby={`${category.id}-title`}>
-				<h3 id={`${category.id}-title`}>{category.title}</h3>
-				<p>{category.description}</p>
-				<div class="card-grid card-grid--services">
-					{services.filter((service) => service.active && service.category === category.id).sort((a, b) => a.order - b.order).map((service) => <ServiceCard service={service} />)}
-				</div>
-			</section>
-		))}
+<section class="yavari-services" id="servicios" aria-labelledby="services-title">
+	<div class="yavari-services__background" aria-hidden="true"></div>
+	<div class="yavari-services__content">
+		<header class="yavari-services__header">
+			<img src="/assets/servicios/ornamentos/loto-ornamental.svg" alt="" width="72" height="54" />
+			<h2 id="services-title">NUESTROS<br /><strong>SERVICIOS</strong></h2>
+			<p class="yavari-services__eyebrow">RITUALES · ORIENTACIÓN · PROTECCIÓN</p>
+			<img class="yavari-services__divider" src="/assets/servicios/ornamentos/divisor-luna.svg" alt="" width="170" height="24" />
+			<p class="yavari-services__intro">Cada situación tiene un camino espiritual.<br />Descubre cómo podemos acompañarte.</p>
+		</header>
+
+		<div class="yavari-services__grid">
+			{servicesContent.map((service, index) => <ServicioCard service={service} index={index} />)}
+		</div>
+
+		<footer class="yavari-services__footer">
+			<img src="/assets/servicios/ornamentos/divisor-luna.svg" alt="" width="170" height="24" />
+			<h2>TU HISTORIA MERECE SER ESCUCHADA</h2>
+			<p>Cuéntanos tu situación y conoce las opciones de orientación espiritual.</p>
+			<WhatsAppButton label="HABLAR POR WHATSAPP" message="Hola, encontré su página web y deseo recibir información sobre sus servicios de orientación espiritual." section="services" location="services-footer" size="large" showIcon />
+			<p class="yavari-services__footer-note">Atención personalizada · Consulta sin compromiso</p>
+		</footer>
 	</div>
 </section>
