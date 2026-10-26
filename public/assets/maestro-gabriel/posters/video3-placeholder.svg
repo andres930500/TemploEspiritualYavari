@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 960" role="img" aria-label="Espacio reservado para video3; miniatura pendiente">
+<defs>
+ <radialGradient id="bg" cx="48%" cy="25%" r="95%"><stop offset="0" stop-color="#432044"/><stop offset=".5" stop-color="#250725"/><stop offset="1" stop-color="#120319"/></radialGradient>
+ <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b98949"/><stop offset=".5" stop-color="#f2d18b"/><stop offset="1" stop-color="#b98949"/></linearGradient>
+</defs>
+<rect width="540" height="960" fill="url(#bg)"/>
+<rect x="12" y="12" width="516" height="936" rx="26" fill="none" stroke="#d8ae62" stroke-width="2" stroke-opacity=".7"/>
+<path d="M55 105 H215 M325 105 H485 M55 855 H215 M325 855 H485" stroke="url(#bar)" stroke-width="2"/>
+<path d="M270 78a26 26 0 1 0 17 44 26 26 0 0 1-17-44Z" fill="#d8ae62"/>
+<path d="M270 362C210 362 162 410 162 470s48 108 108 108 108-48 108-108-48-108-108-108Z" stroke="#f2d18b" stroke-width="5" fill="#150518"/>
+<path d="M248 420L248 520 325 470Z" fill="#f2d18b"/>
+<text x="270" y="665" font-size="48" font-weight="600" text-anchor="middle" fill="#f2d18b" font-family="Georgia,serif">VIDEO 3</text>
+<text x="270" y="712" font-size="24" text-anchor="middle" fill="#f8f0e9" font-family="Arial,sans-serif">Miniatura pendiente</text>
+<text x="270" y="782" font-size="19" text-anchor="middle" fill="#c9acb3" font-family="Arial,sans-serif">TEMPLO ESPIRITUAL YAVARÍ</text>
+</svg>

@@ -1,0 +1,59 @@
+{
+  "id": "sobre-maestro-gabriel",
+  "eyebrow": "EL LEGADO DE UNA SABIDURÍA ANCESTRAL",
+  "nombre": "MAESTRO GABRIEL",
+  "subtitulo": "El conocimiento espiritual que se transmite de generación en generación.",
+  "entradilla": "Hay conocimientos que no se encuentran en los libros. Se transmiten de generación en generación, entre las enseñanzas de nuestros mayores y las tradiciones que una familia conserva con respeto.",
+  "parrafos": [
+    "El camino espiritual del Maestro Gabriel comenzó en el seno de su propia familia, donde las creencias, los rituales y los conocimientos esotéricos formaban parte de una herencia transmitida por sus antepasados.",
+    "Desde joven, Gabriel aprendió a observar el significado de las velas, las plantas, las oraciones y los elementos utilizados en las ceremonias espirituales. Escuchando las enseñanzas de sus mayores, fue descubriendo un mundo de símbolos, tradiciones y prácticas que despertaron su interés por el conocimiento oculto.",
+    "Con el paso del tiempo, aquellas enseñanzas familiares se convirtieron en parte esencial de su camino. Hoy, el Maestro Gabriel continúa esta tradición a través del Templo Espiritual Yavarí, dedicándose a la orientación espiritual y a las prácticas esotéricas relacionadas con el amor, la armonización, la limpieza energética y la protección.",
+    "Para el Maestro Gabriel, cada persona tiene una historia diferente. Por eso, considera fundamental escuchar, comprender y orientar antes de hablar sobre cualquier trabajo espiritual."
+  ],
+  "cierre": "Porque el verdadero valor de una tradición no está solamente en conocer sus rituales, sino en conservar el respeto por quienes buscan orientación.",
+  "valores": [
+    "CONOCIMIENTO HEREDADO",
+    "TRADICIÓN ESPIRITUAL FAMILIAR",
+    "ATENCIÓN PERSONALIZADA"
+  ],
+  "imagen": {
+    "src": "/assets/maestro-gabriel/maestro-gabriel.webp",
+    "alt": "Imagen ilustrativa aprobada del Maestro Gabriel en un altar con una vela blanca"
+  },
+  "cta": {
+    "texto": "HABLAR CON EL MAESTRO GABRIEL",
+    "whatsappMessage": "Hola, Templo Espiritual Yavarí. Quisiera recibir orientación del Maestro Gabriel."
+  },
+  "videos": {
+    "titulo": "CONOCE SU TRABAJO ESPIRITUAL",
+    "subtitulo": "Una mirada a sus rituales y a su trabajo en el templo.",
+    "nota": "Los 3 videos reales los entregará el usuario; no usar clips ni miniaturas inventadas.",
+    "items": [
+      {
+        "id": "video1",
+        "titulo": "VIDEO 1",
+        "nombreArchivo": "video1.mp4",
+        "src": "/assets/maestro-gabriel/videos/video1.mp4",
+        "poster": "/assets/maestro-gabriel/posters/video1-placeholder.svg",
+        "disponible": true
+      },
+      {
+        "id": "video2",
+        "titulo": "VIDEO 2",
+        "nombreArchivo": "video2.mp4",
+        "src": "/assets/maestro-gabriel/videos/video2.mp4",
+        "poster": "/assets/maestro-gabriel/posters/video2.jpeg",
+        "disponible": true
+      },
+      {
+        "id": "video3",
+        "titulo": "VIDEO 3",
+        "nombreArchivo": "video3.mp4",
+        "src": "/assets/maestro-gabriel/videos/video3.mp4",
+        "poster": "/assets/maestro-gabriel/posters/video3-placeholder.svg",
+        "disponible": true
+      }
+    ]
+  },
+  "contenidoPendienteValidar": "Confirmar con el Maestro Gabriel los datos de su historia familiar antes de publicar como biografía factual."
+}

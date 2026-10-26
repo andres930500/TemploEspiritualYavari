@@ -1,20 +1,137 @@
 ---
-import { PENDING, siteConfig } from '../../config/site';
-import SectionHeading from '../ui/SectionHeading.astro';
 import WhatsAppButton from '../ui/WhatsAppButton.astro';
-import ResponsiveImage from '../ui/ResponsiveImage.astro';
+import maestroData from '../../data/maestro-gabriel.json';
+
+const availableVideos = new Set(['video1', 'video2', 'video3']);
 ---
 
-<section class="section section--light" id="maestro" aria-labelledby="master-title">
-	<div class="site-container grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
-		<div class="overflow-hidden rounded-card border border-dashed border-gold/50 bg-paper">
-			<ResponsiveImage src={siteConfig.masterImage} alt="Ilustración abstracta provisional para presentar al maestro" width={800} height={900} sizes="(min-width: 1024px) 35vw, 100vw" class="block aspect-square w-full object-cover lg:aspect-auto" />
+<section class="master-gabriel" id="maestro" aria-labelledby="master-gabriel-title">
+	<div class="master-gabriel__inner">
+		<header class="master-gabriel__header">
+			<p>{maestroData.eyebrow}</p>
+			<h2 id="master-gabriel-title">{maestroData.nombre}</h2>
+			<strong>{maestroData.subtitulo}</strong>
+			<img src="/assets/maestro-gabriel/ornamentos/divisor-luna.svg" alt="" width="180" height="24" />
+		</header>
+
+		<div class="master-gabriel__story">
+			<figure>
+				<img src={maestroData.imagen.src} alt={maestroData.imagen.alt} width="800" height="1000" loading="lazy" decoding="async" />
+				<img class="master-gabriel__frame" src="/assets/maestro-gabriel/ornamentos/marco-dorado.svg" alt="" width="800" height="1000" />
+			</figure>
+			<div class="master-gabriel__copy">
+				<p class="master-gabriel__intro">{maestroData.entradilla}</p>
+				<div class="master-gabriel__rule" aria-hidden="true"></div>
+				<h3>EL CONOCIMIENTO QUE SE HEREDA</h3>
+				<div class="master-gabriel__paragraphs">
+					{maestroData.parrafos.map((parrafo) => <p>{parrafo}</p>)}
+				</div>
+				<p class="master-gabriel__closing">{maestroData.cierre}</p>
+			</div>
 		</div>
-		<div>
-			<SectionHeading id="master-title" eyebrow="Presentación" title="Sobre el maestro" description={siteConfig.masterDescription} />
-			{siteConfig.masterName !== PENDING && <p class="mb-6 text-lg font-semibold text-text-dark">{siteConfig.masterName}</p>}
-			{siteConfig.masterExperience !== PENDING && <p class="mb-6 text-text-dark">{siteConfig.masterExperience}</p>}
-			<WhatsAppButton label="Consultar sobre el servicio" section="about-master" location="master-cta" />
+
+		<ul class="master-gabriel__values" aria-label="Valores del Maestro Gabriel">
+			{maestroData.valores.map((valor) => (
+				<li><img src="/assets/maestro-gabriel/ornamentos/loto-ornamental.svg" alt="" width="40" height="40" /><span>{valor}</span></li>
+			))}
+		</ul>
+
+		<div class="master-gabriel__videos">
+			<p class="master-gabriel__section-label">UNA MIRADA A SU CAMINO</p>
+			<h3>{maestroData.videos.titulo}</h3>
+			<p>{maestroData.videos.subtitulo}</p>
+			<div class="master-gabriel__video-list">
+				{maestroData.videos.items.map((video) => (
+					<article>
+						<strong>{video.titulo}</strong>
+						{availableVideos.has(video.id) ? (
+							<div class="master-gabriel__video-shell">
+								<video class="master-gabriel__video" src={video.src} playsinline preload="metadata" muted aria-label={`${video.titulo}, video sin audio`}></video>
+								<button class="master-gabriel__play" type="button" aria-label={`Reproducir ${video.titulo}`} data-video-toggle><span aria-hidden="true">▶</span></button>
+							</div>
+						) : (
+							<div class="master-gabriel__placeholder" aria-label={`${video.titulo}, imagen de referencia`}>
+								<img src={video.poster} alt="" width="720" height="1280" />
+							</div>
+						)}
+					</article>
+				))}
+			</div>
+		</div>
+
+		<div class="master-gabriel__cta">
+			<WhatsAppButton label={maestroData.cta.texto} message={maestroData.cta.whatsappMessage} section="about-master" location="master-gabriel-cta" size="large" showIcon />
+			<p>Atención personalizada · Consulta sin compromiso</p>
 		</div>
 	</div>
 </section>
+
+<script>
+	const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('.master-gabriel__video'));
+	document.querySelectorAll<HTMLButtonElement>('[data-video-toggle]').forEach((button) => {
+		const video = button.parentElement?.querySelector<HTMLVideoElement>('video');
+		if (!video) return;
+		video.muted = true;
+		video.volume = 0;
+		button.addEventListener('click', () => {
+			if (video.paused) {
+				videos.filter((other) => other !== video).forEach((other) => other.pause());
+				void video.play();
+			} else video.pause();
+		});
+		video.addEventListener('play', () => {
+			button.setAttribute('aria-label', `Pausar ${button.closest('article')?.querySelector('strong')?.textContent ?? 'video'}`);
+			button.classList.add('is-playing');
+		});
+		video.addEventListener('pause', () => {
+			button.setAttribute('aria-label', `Reproducir ${button.closest('article')?.querySelector('strong')?.textContent ?? 'video'}`);
+			button.classList.remove('is-playing');
+		});
+	});
+</script>
+
+<style>
+	.master-gabriel { color: #f8f5f0; background: linear-gradient(180deg, rgb(19 0 23 / .96), rgb(25 5 35 / .98)), url("/assets/servicios/fondos/nebulosa-oscura.webp") center / cover; }
+	.master-gabriel__inner { width: min(100% - 2rem, 72rem); margin-inline: auto; padding: 4.5rem 0 5rem; }
+	.master-gabriel__header { max-width: 46rem; margin: 0 auto 3rem; text-align: center; }
+	.master-gabriel__header p, .master-gabriel__video-list strong { margin: 0; color: #e5cb98; font-family: var(--font-hero); font-size: .75rem; font-weight: 700; letter-spacing: .15em; }
+	.master-gabriel h2, .master-gabriel h3 { color: #f0cc7d; font-family: var(--font-editorial); font-weight: 600; }
+	.master-gabriel h2 { margin: .65rem 0 0; font-size: clamp(2.8rem, 8vw, 5rem); line-height: .9; letter-spacing: .04em; }
+	.master-gabriel__header strong { display: block; margin-top: 1rem; color: #f8f0e9; font-family: var(--font-editorial); font-size: clamp(1.25rem, 3vw, 1.7rem); font-weight: 400; }
+	.master-gabriel__header > img { display: block; width: min(11rem, 70%); height: auto; margin: 1.5rem auto 0; }
+	.master-gabriel__story { display: grid; gap: 2.5rem; align-items: center; }
+	.master-gabriel__story figure { position: relative; width: min(100%, 28rem); margin: 0 auto; border: 1px solid #c9a96e; border-radius: 1rem; overflow: hidden; box-shadow: 0 12px 32px rgb(0 0 0 / .3); }
+	.master-gabriel__story figure > img:first-child { display: block; width: 100%; height: auto; }
+	.master-gabriel__frame { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+	.master-gabriel__copy { padding: 1.5rem 1.25rem; border: 1px solid rgb(229 203 152 / .28); border-radius: 1rem; background: linear-gradient(145deg, rgb(55 22 58 / .7), rgb(25 5 35 / .78)); box-shadow: 0 12px 32px rgb(0 0 0 / .16); font-family: var(--font-hero); font-size: 1rem; line-height: 1.72; }
+	.master-gabriel__intro { margin: 0; color: #f5d992; font-family: var(--font-editorial); font-size: clamp(1.35rem, 3vw, 1.65rem); line-height: 1.25; }
+	.master-gabriel__rule { width: 5rem; height: 1px; margin: 1.25rem 0 1.2rem; background: #d7b56f; }
+	.master-gabriel__copy h3, .master-gabriel__videos > h3 { margin: 0 0 .8rem; font-size: 1.45rem; letter-spacing: .04em; line-height: 1.05; }
+	.master-gabriel__paragraphs p { margin: 0 0 1rem; color: #eadfd7; }
+	.master-gabriel__closing { margin: 1.4rem 0 0 !important; padding-top: 1rem; border-top: 1px solid rgb(229 203 152 / .22); color: #f0cc7d !important; font-family: var(--font-editorial); font-size: 1.2rem; line-height: 1.35; }
+	.master-gabriel__values { display: grid; gap: .75rem; margin: 3rem 0 4rem; padding: 0; list-style: none; }
+	.master-gabriel__values li { display: grid; grid-template-columns: 2rem 1fr; align-items: center; gap: .75rem; padding: .85rem 1rem; border: 1px solid rgb(229 203 152 / .3); border-radius: .75rem; color: #f8f0e9; font-family: var(--font-hero); font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-align: left; }
+	.master-gabriel__values img { width: 2rem; height: 2rem; }
+	.master-gabriel__videos { padding-top: .5rem; text-align: center; }
+	.master-gabriel__section-label { margin: 0; color: #e5cb98; font-family: var(--font-hero); font-size: .72rem; font-weight: 700; letter-spacing: .15em; }
+	.master-gabriel__videos > p { margin: 0; color: #dcc8c7; font-family: var(--font-hero); }
+	.master-gabriel__video-list { display: grid; grid-template-columns: minmax(0, 34rem); justify-content: center; gap: 1.5rem; margin-top: 1.5rem; padding: .25rem .1rem 1rem; }
+	.master-gabriel__video-list article { text-align: left; }
+	.master-gabriel__video-list strong { display: block; margin-bottom: .6rem; }
+	.master-gabriel__video-shell, .master-gabriel__placeholder { position: relative; overflow: hidden; aspect-ratio: 9 / 16; border: 1px solid #c9a96e; border-radius: .85rem; background: #100a16; }
+	.master-gabriel__video, .master-gabriel__placeholder img { display: block; width: 100%; height: 100%; object-fit: cover; }
+	.master-gabriel__play { position: absolute; top: 50%; left: 50%; display: grid; width: 3rem; height: 3rem; place-items: center; border: 1px solid #e5cb98; border-radius: 50%; color: #fff; background: rgb(22 163 74 / .9); transform: translate(-50%, -50%); cursor: pointer; }
+	.master-gabriel__play.is-playing span { font-size: 0; }
+	.master-gabriel__play.is-playing span::after { content: "Ⅱ"; font-size: 1rem; }
+	.master-gabriel__placeholder { display: grid; place-items: center; }
+	.master-gabriel__placeholder span { position: absolute; right: .5rem; bottom: .75rem; left: .5rem; padding: .45rem; color: #f8f0e9; background: rgb(19 0 23 / .82); font-family: var(--font-hero); font-size: .75rem; text-align: center; }
+	.master-gabriel__cta { display: grid; justify-items: center; margin-top: 3.5rem; text-align: center; }
+	.master-gabriel__cta .whatsapp-button { width: min(100%, 28rem); }
+	.master-gabriel__cta p { margin: .8rem 0 0; color: #e5cb98; font-family: var(--font-editorial); }
+	@media (min-width: 768px) {
+		.master-gabriel__story { grid-template-columns: minmax(16rem, .85fr) minmax(0, 1.15fr); gap: clamp(2rem, 5vw, 5rem); }
+		.master-gabriel__values { grid-template-columns: repeat(3, 1fr); }
+		.master-gabriel__values li { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+		.master-gabriel__video-list { grid-template-columns: minmax(0, 34rem); }
+	}
+</style>
