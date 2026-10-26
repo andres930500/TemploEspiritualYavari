@@ -950,6 +950,8 @@ a {
 }
 
 .button {
+	position: relative;
+	isolation: isolate;
 	display: inline-flex;
 	min-height: 3rem;
 	align-items: center;
@@ -964,8 +966,30 @@ a {
 	transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
+.button::before {
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	left: 50%;
+	width: 0.65rem;
+	height: 0.65rem;
+	border-radius: 50%;
+	background: radial-gradient(circle, #fff8d8 0%, #f3d98f 38%, rgb(229 203 152 / 0.45) 64%, transparent 74%);
+	box-shadow: 0 0 0.7rem rgb(243 217 143 / 0.95);
+	content: "";
+	pointer-events: none;
+	offset-path: inset(0 round 999px);
+	offset-distance: 0%;
+	offset-rotate: 0deg;
+	animation: button-orbit 3.8s linear infinite;
+}
+
 .button:hover {
-	transform: translateY(-1px);
+	transform: translateY(-1px) scale(1.035);
+}
+
+.button:active {
+	transform: translateY(-1px) scale(1.04);
 }
 
 .button--primary {
@@ -1004,6 +1028,29 @@ a {
 	cursor: not-allowed;
 	transform: none;
 	opacity: 0.62;
+}
+
+.button--disabled::before {
+	animation: none;
+	opacity: 0.35;
+}
+
+@keyframes button-orbit {
+	to {
+		offset-distance: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.button::before {
+		animation: none;
+		offset-distance: 0%;
+	}
+
+	.button:hover,
+	.button:active {
+		transform: none;
+	}
 }
 
 .hero-redesign__whatsapp {
