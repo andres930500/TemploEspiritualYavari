@@ -2,7 +2,6 @@
 import Footer from '../components/layout/Footer.astro';
 import FloatingWhatsApp from '../components/layout/FloatingWhatsApp.astro';
 import MobileContactBar from '../components/layout/MobileContactBar.astro';
-import ConsentModeDefault from '../components/layout/ConsentModeDefault.astro';
 import { siteConfig } from '../config/site';
 import { createSeoData, organizationJsonLd } from '../lib/seo';
 import '../styles/global.css';
@@ -29,7 +28,13 @@ const organization = organizationJsonLd();
 <!doctype html>
 <html lang={siteConfig.locale}>
 	<head>
-		<ConsentModeDefault />
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18523439123"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+			window.gtag('js', new Date());
+			window.gtag('config', 'AW-18523439123');
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={seo.description} />
@@ -77,6 +82,14 @@ const organization = organizationJsonLd();
 			emitInternalAnalyticsEvent({ event: 'service_interest', service, placement });
 		}
 		emitInternalAnalyticsEvent({ event: 'whatsapp_click', service, placement });
+
+		event.preventDefault();
+		window.gtag?.('event', 'conversion', {
+			send_to: 'AW-18523439123/K3Q6CKTs9qkdEJOA1YBF',
+			value: 1.0,
+			currency: 'COP',
+		});
+		window.open(link.href, '_blank', 'noopener,noreferrer');
 	});
 
 	document.addEventListener('toggle', (event) => {

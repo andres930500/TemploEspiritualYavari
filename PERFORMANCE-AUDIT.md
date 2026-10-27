@@ -16,14 +16,12 @@ datos de usuarios reales (CrUX o RUM).
 ### JavaScript
 
 - No hay componentes React, Vue, Angular ni hidratación de frameworks.
-- La salida contiene únicamente cuatro módulos inline propios para:
+- La salida contiene módulos inline propios para:
   - menú móvil;
-  - reapertura de preferencias de privacidad;
-  - consentimiento y Consent Mode;
+  - etiqueta global de Google Ads y conversión;
   - eventos internos de WhatsApp y FAQ.
-- No se cargan scripts externos. GTM, GA4 y Google Ads permanecen
-  desactivados hasta que exista consentimiento y configuración real.
-- Se conserva el estado inicial denegado de las categorías opcionales.
+- Se carga el script externo de Google Ads desde `googletagmanager.com` y se
+  registra una conversión al pulsar los botones de WhatsApp.
 - No se identificaron dependencias de runtime innecesarias en `package.json`.
 
 ### CSS
@@ -113,8 +111,8 @@ conocidos, pero no sustituyen mediciones.
 - Repetir la auditoría con las imágenes definitivas: el formato, peso y
   dimensiones finales pueden cambiar el LCP.
 - Mantener la imagen hero en formato y tamaño adecuados cuando se reemplace.
-- Configurar y probar GTM únicamente después de implementar consentimiento
-  aprobado; medir su impacto antes de publicar etiquetas.
+- Verificar la etiqueta directa de Google Ads y medir su impacto antes de
+  publicar cambios adicionales de etiquetas.
 - Considerar una CSP después de conocer los orígenes reales de las etiquetas.
 - Verificar Web Vitals en producción desde Colombia y en dispositivos móviles
   de gama media.

@@ -2,10 +2,9 @@
 
 ## Estado actual
 
-- El consentimiento opcional comienza denegado.
-- Google Consent Mode v2 recibe un estado predeterminado denegado.
-- GTM, GA4 y Google Ads no se cargan sin una integración explícita posterior al consentimiento.
-- Las preferencias se guardan localmente en `site_consent_preferences`.
+- La etiqueta directa de Google Ads se carga en cada página.
+- Google Ads registra un evento de conversión al pulsar un botón de WhatsApp.
+- No se utiliza contenido de chats ni números de visitantes en el evento.
 - No se almacena contenido de chats ni números de visitantes.
 - Los enlaces externos usan `noopener noreferrer` cuando abren una nueva pestaña.
 
