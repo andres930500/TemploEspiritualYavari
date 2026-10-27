@@ -949,6 +949,134 @@ a {
 	color: #62574e;
 }
 
+.privacy-section {
+	position: relative;
+	overflow: hidden;
+	color: var(--color-text);
+	background: #130017;
+	border-top: 1px solid rgb(201 169 110 / 0.25);
+	border-bottom: 1px solid rgb(201 169 110 / 0.2);
+}
+
+.privacy-section::before {
+	position: absolute;
+	top: -8rem;
+	right: -6rem;
+	width: 22rem;
+	height: 22rem;
+	border: 1px solid rgb(201 169 110 / 0.14);
+	border-radius: 50%;
+	box-shadow: 0 0 0 2rem rgb(201 169 110 / 0.04), 0 0 0 4rem rgb(201 169 110 / 0.025);
+	content: "";
+	pointer-events: none;
+}
+
+.privacy-section .legal-page__content {
+	position: relative;
+	z-index: 1;
+	padding: 2rem;
+	border: 1px solid rgb(201 169 110 / 0.25);
+	border-radius: var(--radius-card);
+	background: rgb(21 0 24 / 0.9);
+	box-shadow: var(--shadow-card);
+}
+
+.privacy-section .section-heading__eyebrow {
+	color: var(--color-gold-light);
+}
+
+.privacy-section h2 {
+	margin: 0 0 1.5rem;
+	color: var(--color-gold-light);
+	font-family: var(--font-editorial);
+	font-size: clamp(2rem, 6vw, 3.4rem);
+	font-weight: 600;
+	line-height: 1;
+}
+
+.privacy-section p {
+	color: var(--color-cream);
+	line-height: 1.8;
+}
+
+.privacy-section strong {
+	color: var(--color-gold-light);
+}
+
+.site-footer {
+	position: relative;
+	overflow: hidden;
+	border-top: 1px solid rgb(201 169 110 / 0.42);
+	color: var(--color-muted);
+	background: #130017;
+}
+
+.site-footer::before {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: min(32rem, 80vw);
+	height: 1px;
+	background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+	content: "";
+	transform: translateX(-50%);
+}
+
+.site-footer__inner {
+	position: relative;
+	z-index: 1;
+	display: grid;
+	gap: 2rem;
+	padding-block: 2.5rem;
+}
+
+.site-footer__identity {
+	font-size: 0.875rem;
+	line-height: 1.6;
+}
+
+.site-footer__brand {
+	margin: 0;
+	color: var(--color-gold-light);
+	font-family: var(--font-editorial);
+	font-size: 1.55rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+}
+
+.site-footer__links {
+	display: grid;
+	gap: 0.85rem;
+}
+
+.site-footer__links nav {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 1rem;
+}
+
+.site-footer__links a,
+.site-footer__links button {
+	padding: 0.35rem 0;
+	color: var(--color-muted);
+	font-size: 0.875rem;
+	text-decoration: none;
+	transition: color 160ms ease, transform 160ms ease;
+}
+
+.site-footer__links button {
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	font: inherit;
+}
+
+.site-footer__links a:hover,
+.site-footer__links button:hover {
+	color: var(--color-gold-light);
+	transform: translateY(-1px);
+}
+
 .button {
 	display: inline-flex;
 	min-height: 3rem;
@@ -1537,6 +1665,19 @@ a {
 @media (min-width: 768px) {
 	.section {
 		padding-block: var(--spacing-section-lg);
+	}
+
+	.privacy-section .legal-page__content {
+		padding: 3rem;
+	}
+
+	.site-footer__inner {
+		grid-template-columns: 1fr auto;
+		align-items: end;
+	}
+
+	.site-footer__links {
+		justify-items: end;
 	}
 }
 

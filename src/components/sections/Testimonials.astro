@@ -1,18 +1,137 @@
 ---
 import { testimonials } from '../../data/testimonials';
 import SectionHeading from '../ui/SectionHeading.astro';
+
+const testimonialImages = [
+	'/assets/testimonios/testimonio-1.jpeg',
+	'/assets/testimonios/testimonio-2.jpeg',
+	'/assets/testimonios/testimonio-3.jpeg',
+	'/assets/testimonios/testimonio-4.jpeg',
+	'/assets/testimonios/testimonio-5.jpeg',
+];
 ---
 
-{testimonials.length > 0 && <section class="section bg-ink" id="testimonios" aria-labelledby="testimonials-title">
-	<div class="site-container">
-		<SectionHeading id="testimonials-title" title="Testimonios" />
-		<div class="card-grid sm:grid-cols-2">
-			{testimonials.filter((testimonial) => testimonial.published && testimonial.publicationAuthorized).map((testimonial) => (
-				<blockquote class="testimonial-card bg-charcoal p-6">
-					<p>{testimonial.testimonial}</p>
-					<cite>{testimonial.authorizedName}</cite>
+{testimonials.length > 0 && <section class="testimonials-section" id="testimonios" aria-labelledby="testimonials-title">
+	<div class="site-container testimonials-section__inner">
+		<SectionHeading id="testimonials-title" eyebrow="Experiencias compartidas" title="Lo que cuentan quienes nos consultan" description="Cada proceso es personal. Estas referencias visuales ilustran conversaciones y experiencias compartidas." />
+		<div class="card-grid testimonials-section__grid sm:grid-cols-2">
+			{testimonials.filter((testimonial) => testimonial.published && testimonial.publicationAuthorized).map((testimonial, index) => (
+				<blockquote class="testimonial-card testimonials-section__card">
+					<div class="testimonials-section__media">
+						<img class="testimonials-section__image" src={testimonialImages[index]} alt={`Referencia visual del testimonio ${index + 1}`} loading="lazy" decoding="async" />
+					</div>
+					<div class="testimonials-section__body">
+						<span class="testimonials-section__quote" aria-hidden="true">“</span>
+						<p>{testimonial.testimonial}</p>
+						<cite>{testimonial.authorizedName}</cite>
+					</div>
 				</blockquote>
 			))}
 		</div>
+
 	</div>
 </section>}
+
+<style>
+	.testimonials-section {
+		color: #f8f5f0;
+		background:
+			linear-gradient(180deg, #130017 0%, #1b0925 100%),
+			url("/assets/servicios/fondos/nebulosa-oscura.webp") center / cover;
+	}
+
+	.testimonials-section__inner {
+		padding-block: 4.5rem 5rem;
+	}
+
+	.testimonials-section :global(.section-heading) {
+		margin-inline: auto;
+		text-align: center;
+	}
+
+	.testimonials-section :global(.section-heading__eyebrow) {
+		color: #e5cb98;
+	}
+
+	.testimonials-section :global(.section-heading__title) {
+		color: #f0cc7d;
+		font-family: var(--font-editorial);
+	}
+
+	.testimonials-section :global(.section-heading__description) {
+		color: #dcc8c7;
+	}
+
+	.testimonials-section__grid {
+		margin-top: 2rem;
+	}
+
+	.testimonials-section__card {
+		position: relative;
+		overflow: hidden;
+		padding: 0;
+		border-color: rgb(229 203 152 / 0.3);
+		background: linear-gradient(145deg, rgb(55 22 58 / 0.78), rgb(25 5 35 / 0.9));
+	}
+
+	.testimonials-section__media {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		padding: 1rem;
+		background: #100a16;
+		border-bottom: 1px solid rgb(229 203 152 / 0.28);
+	}
+
+	.testimonials-section__image {
+		display: block;
+		width: auto;
+		max-width: 100%;
+		height: auto;
+		max-height: 34rem;
+		margin: 0 auto;
+		object-fit: contain;
+		object-position: center;
+	}
+
+	.testimonials-section__body {
+		padding: 1.35rem 1.5rem 1.5rem;
+	}
+
+	.testimonials-section__quote {
+		display: block;
+		height: 1.4rem;
+		color: #f0cc7d;
+		font-family: var(--font-editorial);
+		font-size: 3rem;
+		line-height: 1;
+	}
+
+	.testimonials-section__card p {
+		margin: 0.25rem 0 1.25rem;
+		color: #f8f0e9;
+		font-family: var(--font-editorial);
+		font-size: 1.25rem;
+		line-height: 1.35;
+	}
+
+	.testimonials-section__card cite {
+		color: #e5cb98;
+		font-family: var(--font-hero);
+		font-size: 0.78rem;
+		font-style: normal;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+	}
+
+	.testimonials-section__notice {
+		max-width: 48rem;
+		margin: 2rem auto 0;
+		color: #bdaebc;
+		font-family: var(--font-hero);
+		font-size: 0.78rem;
+		line-height: 1.6;
+		text-align: center;
+	}
+</style>

@@ -5,7 +5,7 @@ import SectionHeading from '../ui/SectionHeading.astro';
 
 <section class="section section--light" id="preguntas" aria-labelledby="faq-title">
 	<div class="site-container">
-		<SectionHeading id="faq-title" eyebrow="Respuestas provisionales" title="Preguntas frecuentes" description="Estas respuestas se actualizarán con la información comercial definitiva." />
+		<SectionHeading id="faq-title" eyebrow="Respuestas frecuentes" title="Preguntas frecuentes" description="Encuentra respuestas a las preguntas más habituales antes de solicitar información." />
 		<div class="max-w-3xl">
 			{faqItems.filter((item) => item.active).sort((a, b) => a.order - b.order).map((item) => (
 				<details class="faq-item" data-faq-id={item.id}>

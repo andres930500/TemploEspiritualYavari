@@ -4,11 +4,7 @@ import Hero from '../components/sections/Hero.astro';
 import Introduction from '../components/sections/Introduction.astro';
 import Services from '../components/sections/Services.astro';
 import AboutMaster from '../components/sections/AboutMaster.astro';
-import HowItWorks from '../components/sections/HowItWorks.astro';
-import Benefits from '../components/sections/Benefits.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import Contact from '../components/sections/Contact.astro';
 import { siteConfig } from '../config/site';
 ---
 
@@ -17,9 +13,18 @@ import { siteConfig } from '../config/site';
 	<Introduction />
 	<Services />
 	<AboutMaster />
-	<HowItWorks />
-	<Benefits />
 	<Testimonials />
-	<FAQ />
-	<Contact />
+	<section class="section privacy-section" id="privacidad" aria-labelledby="privacy-title">
+		<div class="site-container legal-page__content">
+			<p class="section-heading__eyebrow">Información importante</p>
+			<h2 id="privacy-title">Políticas de privacidad</h2>
+			<p>Somos sumamente discretos y profesionales, responsables de cada uno de nuestros trabajos, donde garantizamos al cliente resultados reales.</p>
+			<p>En caso de que usted requiera de nuestros servicios, el valor dependerá de sus características, complejidad, tiempo de ejecución y tipología. El valor del servicio solicitado estará de acuerdo con sus necesidades y será informado con claridad para su respectiva aprobación. El servicio será cancelado después de obtener resultados.</p>
+			<p>Los métodos de pago vigentes son transferencia o consignación bancaria y giros. Si la persona decide realizar un tratamiento o cualquier otra acción sugerida por nuestros maestros, tendrá un costo que será informado durante la consulta y que puede variar dependiendo de cada caso.</p>
+			<p>De acuerdo con las legislaciones vigentes, las predicciones, videncias psíquicas, lecturas de cartas y hechizos tienen fines de entretenimiento y ayuda personal. Estos servicios no sustituirán la debida atención médica, legal, financiera, psicológica o psiquiátrica. Todas las personas son diferentes; por tanto, los resultados pueden variar de una persona a otra.</p>
+			<p>Por ningún motivo este sitio web recolectará información personal de tratamiento sensible, como información financiera, religiosa, tarjetas de crédito, información privada o números de identificación. Los datos solicitados se deben entregar de manera voluntaria y solo serán utilizados para atender la consulta o necesidad específica del usuario y prestar un mejor servicio.</p>
+			<p>La información enviada por correo electrónico se tratará con autorización de cada usuario. Después de leer esto, usted entiende y comprende las condiciones de este sitio web. Ninguna empresa relacionada, afiliada o subsidiaria será responsable por daños o pérdidas relacionadas con estas condiciones ni por el uso que usted haga del contenido de este sitio web, ya sea por teléfono, correo, redes sociales o chat en vivo.</p>
+			<p>Todas las personas que accedan a este sitio web buscando asesoría sobre nuestros servicios tendrán una <strong>consulta telefónica inicial gratuita</strong>.</p>
+		</div>
+	</section>
 </BaseLayout>

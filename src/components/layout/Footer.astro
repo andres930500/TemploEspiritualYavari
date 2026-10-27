@@ -8,22 +8,22 @@ const navigationLinks = [
 ];
 ---
 
-<footer class="border-t border-gold/20 bg-charcoal py-8">
-	<div class="site-container grid gap-6 text-sm text-muted md:grid-cols-[1fr_auto] md:items-end">
-		<div>
-			<p class="m-0 font-bold text-gold-light">{siteConfig.commercialName}</p>
+<footer class="site-footer">
+	<div class="site-container site-footer__inner">
+		<div class="site-footer__identity">
+			<p class="site-footer__brand">{siteConfig.commercialName}</p>
 			{siteConfig.commercialEmail !== PENDING && <p class="mt-2 mb-0">Correo: {siteConfig.commercialEmail}</p>}
 			{siteConfig.whatsappBusinessNumber !== PENDING && <p class="mt-1 mb-0">WhatsApp: {siteConfig.whatsappBusinessNumber}</p>}
 			<p class="mt-3 mb-0">&copy; {new Date().getFullYear()} {siteConfig.commercialName}.</p>
 		</div>
-		<div class="flex flex-wrap gap-x-5 gap-y-2">
-			<nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Enlaces de navegación">
-				{navigationLinks.map((link) => <a class="transition-colors hover:text-gold-light" href={link.href}>{link.label}</a>)}
+		<div class="site-footer__links">
+			<nav aria-label="Enlaces de navegación">
+				{navigationLinks.map((link) => <a href={link.href}>{link.label}</a>)}
 			</nav>
-			<nav class="flex flex-wrap gap-x-5 gap-y-2" aria-label="Enlaces legales">
-				<a class="transition-colors hover:text-gold-light" href="/politica-de-privacidad">Privacidad</a>
-				<a class="transition-colors hover:text-gold-light" href="/terminos-y-condiciones">Términos</a>
-				<button class="text-left transition-colors hover:text-gold-light" type="button" data-open-privacy>Configurar privacidad</button>
+			<nav aria-label="Enlaces legales">
+				<a href="/politica-de-privacidad">Privacidad</a>
+				<a href="/terminos-y-condiciones">Términos</a>
+				<button type="button" data-open-privacy>Configurar privacidad</button>
 			</nav>
 		</div>
 	</div>
