@@ -1,4 +1,5 @@
 export const PENDING_WHATSAPP = 'PENDIENTE_DE_CONFIGURAR';
+export const WHATSAPP_CONTACT_URL = 'https://w.app/0ayvct';
 
 export const isValidWhatsAppNumber = (number: string): boolean => {
 	const normalized = number.replace(/[\s()-]/g, '');
@@ -10,9 +11,6 @@ export const normalizeWhatsAppNumber = (number: string): string | null => {
 	return number.replace(/[\s()+-]/g, '');
 };
 
-export const createWhatsAppUrl = (number: string, message: string): string | null => {
-	if (number === PENDING_WHATSAPP || !isValidWhatsAppNumber(number)) return null;
-	const normalizedNumber = normalizeWhatsAppNumber(number);
-	if (!normalizedNumber) return null;
-	return `https://wa.me/${normalizedNumber}?text=${encodeURIComponent(message)}`;
+export const createWhatsAppUrl = (_number: string, _message: string): string => {
+	return WHATSAPP_CONTACT_URL;
 };
