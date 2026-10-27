@@ -1,5 +1,5 @@
 export const PENDING_WHATSAPP = 'PENDIENTE_DE_CONFIGURAR';
-export const WHATSAPP_CONTACT_URL = 'https://w.app/y8kusb';
+export const WHATSAPP_CONTACT_URL = 'https://wa.link/ryxdud';
 
 export const isValidWhatsAppNumber = (number: string): boolean => {
 	const normalized = number.replace(/[\s()-]/g, '');
