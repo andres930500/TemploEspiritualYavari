@@ -23,14 +23,7 @@ const navigationLinks = [
 			<nav aria-label="Enlaces legales">
 				<a href="/politica-de-privacidad">Privacidad</a>
 				<a href="/terminos-y-condiciones">Términos</a>
-				<button type="button" data-open-privacy>Configurar privacidad</button>
 			</nav>
 		</div>
 	</div>
 </footer>
-
-<script>
-	document.querySelector('[data-open-privacy]')?.addEventListener('click', () => {
-		window.dispatchEvent(new CustomEvent('privacy_preferences_open'));
-	});
-</script>
