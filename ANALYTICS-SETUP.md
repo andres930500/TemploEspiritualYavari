@@ -1,6 +1,6 @@
 # Configuración de analítica
 
-La aplicación tiene preparada una capa interna de eventos en [`src/lib/analytics.ts`](./src/lib/analytics.ts) y una integración directa de Google Ads en [`src/layouts/BaseLayout.astro`](./src/layouts/BaseLayout.astro). La etiqueta de Google Ads `AW-18523439123` se carga en cada página y la conversión se registra cuando se pulsa cualquier botón de WhatsApp.
+La aplicación tiene preparada una capa interna de eventos en [`src/lib/analytics.ts`](./src/lib/analytics.ts) y carga el contenedor de Google Tag Manager `GTM-5ZLT6Z2K` desde [`src/layouts/BaseLayout.astro`](./src/layouts/BaseLayout.astro). Los clics de WhatsApp se envían a `dataLayer` para que la nueva cuenta configure sus conversiones en GTM.
 
 ## Eventos disponibles
 
@@ -14,15 +14,17 @@ La aplicación tiene preparada una capa interna de eventos en [`src/lib/analytic
 
 `service_interest` y `whatsapp_click` representan etapas distintas: el primero indica interés en una categoría; el segundo indica un clic de contacto. Ninguno significa conversación iniciada, lead calificado o venta.
 
-## 1. Configuración directa de Google Ads
+## 1. Configurar conversiones en el nuevo contenedor
 
-La etiqueta global utiliza:
+El sitio envía estos eventos a `dataLayer`:
 
-- ID de Google Ads: `AW-18523439123`
-- Acción de conversión: `AW-18523439123/K3Q6CKTs9qkdEJOA1YBF`
-- Valor enviado: `1.0 COP`
+- `whatsapp_click`: clic en cualquier botón de WhatsApp.
+- `service_interest`: clic en el CTA de una tarjeta de servicio.
+- `faq_interaction`: apertura de una pregunta frecuente.
 
-La conversión representa un clic con intención de contacto en WhatsApp. No confirma que la persona haya iniciado una conversación, contratado un servicio o realizado un pago.
+En GTM `GTM-5ZLT6Z2K`, crea una etiqueta de conversión de Google Ads con el ID y la etiqueta de conversión que proporcione la nueva cuenta. Usa un activador de evento personalizado para `whatsapp_click`.
+
+El evento representa un clic con intención de contacto. No confirma que la persona haya iniciado una conversación, contratado un servicio o realizado un pago.
 
 ## 2. Crear una propiedad GA4
 
@@ -44,18 +46,18 @@ PUBLIC_GTM_CONSENT_GRANTED=false
 
 No incluyas identificadores ficticios en producción. `PENDIENTE_DE_CONFIGURAR` no activa ninguna etiqueta.
 
-## 4. Consentimiento y carga de GTM
+## 4. Carga de GTM
 
-La función `loadGoogleTagManager()` está preparada en [`src/lib/analytics.ts`](./src/lib/analytics.ts), pero actualmente no se invoca. La futura integración del administrador de consentimiento deberá llamarla solo después de una decisión válida del visitante:
+La función `loadGoogleTagManager()` está disponible en [`src/lib/analytics.ts`](./src/lib/analytics.ts) para integraciones futuras. El sitio actual carga directamente el contenedor `GTM-5ZLT6Z2K` desde el layout principal.
 
 ```ts
 loadGoogleTagManager({
-	containerId: publicAnalyticsConfig.googleTagManagerId,
+	containerId: 'GTM-5ZLT6Z2K',
 	consentGranted: true,
 });
 ```
 
-El mismo flujo deberá activar `enableDataLayerBridge(true)` antes de permitir el envío de eventos internos hacia `dataLayer`. No cambies `PUBLIC_GTM_CONSENT_GRANTED` a `true` como sustituto de un consentimiento real. Esa variable solo documenta el estado de preparación.
+Los eventos internos se envían a `dataLayer` una sola vez mediante `emitInternalAnalyticsEvent()`.
 
 ## 5. Configurar eventos en GTM
 
@@ -96,7 +98,7 @@ Una conversación iniciada no puede detectarse automáticamente con un enlace `w
 ## 9. Evitar duplicados
 
 - Mantén GTM como único administrador de etiquetas.
-- No añadas otra etiqueta directa de Google Ads a `BaseLayout.astro`.
+- No añadas una etiqueta directa de Google Ads fuera de GTM.
 - Comprueba que existe una sola etiqueta por evento y destino.
 - Revisa DebugView y Tag Assistant antes de publicar.
 - Verifica que no haya dos contenedores GTM cargados.

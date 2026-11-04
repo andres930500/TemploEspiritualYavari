@@ -21,9 +21,14 @@ export const normalizeAnalyticsEvent = (event: AnalyticsEvent): AnalyticsEvent =
 
 export const emitInternalAnalyticsEvent = (event: AnalyticsEvent): void => {
 	if (typeof window === 'undefined') return;
+	const normalizedEvent = normalizeAnalyticsEvent(event);
 	window.dispatchEvent(new CustomEvent(event.event, {
-		detail: normalizeAnalyticsEvent(event),
+		detail: normalizedEvent,
 	}));
+	if (!window.__analyticsBridgeEnabled) {
+		window.dataLayer = window.dataLayer || [];
+		window.dataLayer.push(normalizedEvent);
+	}
 };
 
 export const enableDataLayerBridge = (consentGranted: boolean): boolean => {
