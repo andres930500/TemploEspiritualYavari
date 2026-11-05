@@ -36,6 +36,13 @@ const organization = organizationJsonLd();
 			});
 		</script>
 		<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5ZLT6Z2K"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18556394775"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+			window.gtag('js', new Date());
+			window.gtag('config', 'AW-18556394775');
+		</script>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="description" content={seo.description} />
@@ -83,6 +90,11 @@ const organization = organizationJsonLd();
 			emitInternalAnalyticsEvent({ event: 'service_interest', service, placement });
 		}
 		emitInternalAnalyticsEvent({ event: 'whatsapp_click', service, placement });
+		window.gtag?.('event', 'conversion', {
+			send_to: 'AW-18556394775/M45XCPXnmbIdEJe6sJBF',
+			value: 1.0,
+			currency: 'COP',
+		});
 	});
 
 	document.addEventListener('toggle', (event) => {
