@@ -1,0 +1,63 @@
+---
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+
+<div class="exit-intent" data-exit-intent hidden>
+	<div class="exit-intent__backdrop" data-exit-close></div>
+	<section
+		class="exit-intent__dialog"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="exit-intent-title"
+		aria-describedby="exit-intent-description"
+	>
+		<button class="exit-intent__close" type="button" aria-label="Cerrar aviso" data-exit-close>×</button>
+		<p class="exit-intent__eyebrow">Orientación espiritual</p>
+		<h2 id="exit-intent-title">¿Sientes que te están haciendo brujería?</h2>
+		<p id="exit-intent-description">Consulta gratis ahora mismo y no te quedes con la duda. Cuéntanos tu situación y recibe orientación inicial por WhatsApp.</p>
+		<WhatsAppButton label="Consulta gratis" location="exit-intent" section="global" size="large" showIcon />
+		<p class="exit-intent__note">Atención directa y confidencial.</p>
+	</section>
+</div>
+
+<script>
+	const modal = document.querySelector<HTMLElement>('[data-exit-intent]');
+	const closeButtons = document.querySelectorAll<HTMLElement>('[data-exit-close]');
+	const sessionKey = 'yavari_exit_intent_seen';
+	let shown = false;
+	let activationTimer: number | undefined;
+
+	const close = () => {
+		if (!modal) return;
+		modal.hidden = true;
+		document.body.classList.remove('exit-intent-open');
+	};
+
+	const show = () => {
+		if (!modal || shown || sessionStorage.getItem(sessionKey)) return;
+		shown = true;
+		sessionStorage.setItem(sessionKey, 'true');
+		modal.hidden = false;
+		document.body.classList.add('exit-intent-open');
+		modal.querySelector<HTMLButtonElement>('.exit-intent__close')?.focus();
+	};
+
+	closeButtons.forEach((button) => button.addEventListener('click', close));
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape' && !modal?.hidden) close();
+	});
+
+	const scheduleAfterScroll = () => {
+		if (shown || sessionStorage.getItem(sessionKey) || activationTimer !== undefined) return;
+		activationTimer = window.setTimeout(show, 6000);
+	};
+
+	const handleScroll = () => {
+		const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+		const scrollProgress = scrollableHeight > 0 ? window.scrollY / scrollableHeight : 0;
+		if (scrollProgress >= 0.25) scheduleAfterScroll();
+	};
+
+	window.addEventListener('scroll', handleScroll, { passive: true });
+	handleScroll();
+</script>
